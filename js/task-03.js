@@ -12,3 +12,8 @@ const images = [
     alt: 'Group of Horses Running',
   },
 ];
+const list = document.querySelector(".gallery");
+const listItems = images.map(({url, alt}) => `<li class="list-item"> <img class="img-def" src="${url}" alt="${alt}" </img> </li>`).join("");
+list.classList.add("ul-def");
+list.classList.add("list-flex");
+list.insertAdjacentHTML("beforeend", listItems);
