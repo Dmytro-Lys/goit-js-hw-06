@@ -4,10 +4,11 @@ const refs = {
   listBoxes: document.querySelector("#boxes"),
   createBoxesBtn: document.querySelector("[data-create]"),
   destroyBoxesBtn: document.querySelector("[data-destroy]"),
-  controls: document.querySelector("#controls"),
-  numberBoxes: controls.querySelector("input"),
+  numberBoxes: document.querySelector("#controls").querySelector("input"),
 }
+// default value 
 refs.numberBoxes.value = 1;
+
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215)
     .toString(16)
@@ -23,10 +24,10 @@ const createBox = (size, bgColor) => {
 
 const createBoxes = (amount) => {
     for (let i = 0; i < amount; i += 1){
-      boxes.push(createBox( boxes.length * 10, getRandomHexColor()));
+      boxes.push(createBox(boxes.length * 10, getRandomHexColor()));
   };
     refs.listBoxes.innerHTML = "";
-    refs.listBoxes.insertAdjacentHTML('beforeend', boxes.join(''))
+    refs.listBoxes.insertAdjacentHTML('beforeend', boxes.join(''));
 }
 const createDivs = () => {
   createBoxes(refs.numberBoxes.value);
