@@ -1,5 +1,5 @@
 const BASE_SIZE = 30;
-
+let boxes = [];
 const refs = {
   listBoxes: document.querySelector("#boxes"),
   createBoxesBtn: document.querySelector("[data-create]"),
@@ -23,12 +23,16 @@ const createBox = (size, bgColor) => {
 }
 
 const createBoxes = (amount) => {
-  const emptyArray = " ".repeat(amount).split("");
-  const boxes = emptyArray.map((item, index) => createBox(index * 10, getRandomHexColor()));
-  refs.listBoxes.insertAdjacentHTML('beforeend', boxes.join(''));
+  let emptyArray = " ".repeat(amount).split("");
+  emptyArray = emptyArray.map((item, index) => createBox((boxes.length + index) * 10, getRandomHexColor()));
+  boxes = boxes.concat(emptyArray);
+  refs.listBoxes.insertAdjacentHTML('beforeend', emptyArray.join(''));
 }
 
-const destroyBoxes = () => refs.listBoxes.innerHTML = "";
+const destroyBoxes = () => {
+  refs.listBoxes.innerHTML = "";
+  boxes = []
+};
 
 refs.createBoxesBtn.addEventListener("click", () => createBoxes(refs.numberBoxes.value));
 refs.destroyBoxesBtn.addEventListener("click", destroyBoxes);
